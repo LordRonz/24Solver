@@ -9,7 +9,7 @@ def operate(a, b, op):
         return a * b
     elif op == '/':
         if b == 0:
-            return a + b
+            return a / 0.001
         else:
             return a / b
 
@@ -30,6 +30,7 @@ def solve(nums, target):
     temp2 = 0
     found = False
     planB = False
+    planC = False
     allAns = []
     p = permutations(nums)
 
@@ -79,7 +80,7 @@ def solve(nums, target):
                         res = nums[0]
                         j = 1 """
 
-    if found and not planB:
+    if found:
         for temp in allAns:
             answer = temp[0]
             opAns = temp[1]
@@ -143,10 +144,57 @@ def solve(nums, target):
                 j += 1
             print (ans)
 
+    allAns = []
+
+    p = permutations(nums)
+    j = 1
+    for numPer in p:
+        temp1 = 0
+        temp2 = 0
+        for a in op:
+            temp1 = operate(numPer[0], numPer[1], a)
+            for b in op:
+                temp2 = operate(numPer[2], temp1, b)
+                for c in op:
+                    res = operate(numPer[3], temp2, c)
+                    if res == target:
+                        found = True
+                        planC = True
+                        """ print (numPer[3])
+                        print (c)
+                        print (numPer[2])
+                        print (b)
+                        print (numPer[0])
+                        print (a)
+                        print (numPer[1]) """
+                        answer = [numPer[3], numPer[2], numPer[0], numPer[1]]
+                        opAns = []
+                        opAns += c + b + a
+                        tempList = [answer, opAns]
+                        allAns.append(tempList)
+
+    if found and planC:
+        for temp in allAns:
+            answer = temp[0]
+            opAns = temp[1]
+            j = 0
+            ans = ''
+            for i in range(4):
+                if i == 1 or i == 2:
+                    ans += '('
+                ans += str(answer[i])
+                if i == 3:
+                    ans += ')'
+                if j < 3:
+                    ans += ' '
+                    ans += opAns[j]
+                    ans += ' '
+                j += 1
+            ans += ')'
+            print(ans)
+
     if not found:
         print ('Solution not found !')
-
-
 
 if __name__ == "__main__":
     print ('<----- Math 24Solver -----')
