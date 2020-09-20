@@ -197,7 +197,7 @@ def solve(nums, target):
         print ('Solution not found !')
 
 if __name__ == "__main__":
-    print ('<----- Math 24Solver -----')
+    print ('<----- Math 24Solver ----->')
     nums = [0, 0]
     while nums[0] != -1 and len(nums) > 1:
         print ('Enter four numbers: (Enter -1 to quit)')
