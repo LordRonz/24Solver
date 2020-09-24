@@ -9,7 +9,7 @@ def operate(a, b, op):
         return a * b
     elif op == '/':
         if b == 0:
-            return a / 0.001
+            return a / 0.0001
         else:
             return a / b
 
@@ -17,22 +17,17 @@ def solve(nums, target):
     op = ['+', '-', '*', '/']
     answer = []
     opAns = []
-    """ if (sum(nums) == target):
-        for i in nums:
-            answer += str(i)
-            answer += plus
-        answer.pop() """
     i = 1
     j = 1
-    k = 0
     res = nums[0]
     temp1 = 0
     temp2 = 0
     found = False
     planB = False
     planC = False
+    planD = False
     allAns = []
-    p = permutations(nums)
+    p = list(set(permutations(nums)))
 
     for numPer in p:
         res = numPer[0]
@@ -48,7 +43,7 @@ def solve(nums, target):
                 j += 1
                 for c in op:
                     res = operate(res, numPer[j], c)
-                    if res == target:
+                    if round(res, 3) == target:
                         """ print (target)
                         print (numPer)
                         print(temp4)
@@ -61,8 +56,7 @@ def solve(nums, target):
                         print (c) """
                         found = True
                         answer = list(numPer)
-                        opAns = []
-                        opAns += a + b + c
+                        opAns = [a, b, c]
                         tempList = [answer, opAns]
                         allAns.append(tempList)
                     if c == '/' and b != '/':
@@ -74,11 +68,6 @@ def solve(nums, target):
                         res = numPer[0]
                     else:
                         res = temp1
-                    """ if j >= 4:
-                        if int(res) == 24:
-                            found = True
-                        res = nums[0]
-                        j = 1 """
 
     if found:
         for temp in allAns:
@@ -97,7 +86,6 @@ def solve(nums, target):
 
     allAns.clear()
 
-    p = permutations(nums)
     for numPer in p:
         temp1 = 0
         temp2 = 0
@@ -107,7 +95,7 @@ def solve(nums, target):
                 temp2 = operate(numPer[2], numPer[3], b)
                 for c in op:
                     res = operate(temp1, temp2, c)
-                    if res == target:
+                    if round(res, 3) == target:
                         found = True
                         planB = True
                         """ print (numPer[0])
@@ -120,8 +108,7 @@ def solve(nums, target):
                         print (numPer[3])
                         print (temp2) """
                         answer = list(numPer)
-                        opAns = []
-                        opAns += a + c + b
+                        opAns = [a, c, b]
                         tempList = [answer, opAns]
                         allAns.append(tempList)
 
@@ -144,9 +131,8 @@ def solve(nums, target):
                 j += 1
             print (ans)
 
-    allAns = []
+    allAns.clear()
 
-    p = permutations(nums)
     j = 1
     for numPer in p:
         temp1 = 0
@@ -157,7 +143,7 @@ def solve(nums, target):
                 temp2 = operate(numPer[2], temp1, b)
                 for c in op:
                     res = operate(numPer[3], temp2, c)
-                    if res == target:
+                    if round(res, 3) == target:
                         found = True
                         planC = True
                         """ print (numPer[3])
@@ -168,8 +154,7 @@ def solve(nums, target):
                         print (a)
                         print (numPer[1]) """
                         answer = [numPer[3], numPer[2], numPer[0], numPer[1]]
-                        opAns = []
-                        opAns += c + b + a
+                        opAns = [c, b, a]
                         tempList = [answer, opAns]
                         allAns.append(tempList)
 
@@ -191,6 +176,45 @@ def solve(nums, target):
                     ans += ' '
                 j += 1
             ans += ')'
+            print(ans)
+
+    allAns.clear()
+
+    j = 1
+    for numPer in p:
+        temp1 = 0
+        temp2 = 0
+        for a in op:
+            temp1 = operate(numPer[0], numPer[1], a)
+            for b in op:
+                temp2 = operate(temp1, numPer[2], b)
+                for c in op:
+                    res = operate(numPer[3], temp2, c)
+                    if round(res, 3) == target:
+                        found = True
+                        planD = True
+                        answer = [numPer[3], numPer[0], numPer[1], numPer[2]]
+                        opAns = [c, a, b]
+                        tempList = [answer, opAns]
+                        allAns.append(tempList)
+
+    if found and planD:
+        for temp in allAns:
+            answer = temp[0]
+            opAns = temp[1]
+            j = 0
+            ans = ''
+            for i in range(4):
+                if i == 1:
+                    ans += '(('
+                ans += str(answer[i])
+                if i == 2 or i == 3:
+                    ans += ')'
+                if j < 3:
+                    ans += ' '
+                    ans += opAns[j]
+                    ans += ' '
+                j += 1
             print(ans)
 
     if not found:
