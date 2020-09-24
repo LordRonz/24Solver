@@ -14,7 +14,7 @@ def operate(a, b, op):
             return a / b
 
 def solve(nums, target):
-    op = ['+', '-', '*', '/']
+    op = ('+', '-', '*', '/')
     answer = []
     opAns = []
     i = 1
@@ -58,13 +58,12 @@ def solve(nums, target):
                         answer = list(numPer)
                         opAns = [a, b, c]
                         tempList = [answer, opAns]
-                        allAns.append(tempList)
+                        allAns.extend([tempList])
                     if c == '/' and b != '/':
                         j -= 1
                         res = temp2
                     elif c == '/' and b == '/':
                         j = 1
-
                         res = numPer[0]
                     else:
                         res = temp1
@@ -110,7 +109,7 @@ def solve(nums, target):
                         answer = list(numPer)
                         opAns = [a, c, b]
                         tempList = [answer, opAns]
-                        allAns.append(tempList)
+                        allAns.extend([tempList])
 
     if found and planB:
         for temp in allAns:
@@ -156,7 +155,7 @@ def solve(nums, target):
                         answer = [numPer[3], numPer[2], numPer[0], numPer[1]]
                         opAns = [c, b, a]
                         tempList = [answer, opAns]
-                        allAns.append(tempList)
+                        allAns.extend([tempList])
 
     if found and planC:
         for temp in allAns:
@@ -196,7 +195,7 @@ def solve(nums, target):
                         answer = [numPer[3], numPer[0], numPer[1], numPer[2]]
                         opAns = [c, a, b]
                         tempList = [answer, opAns]
-                        allAns.append(tempList)
+                        allAns.extend([tempList])
 
     if found and planD:
         for temp in allAns:
