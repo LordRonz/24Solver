@@ -221,8 +221,13 @@ def solve(nums, target):
 
 if __name__ == "__main__":
     print ('<----- Math 24Solver ----->')
-    nums = [0, 0]
-    while nums[0] != -1 and len(nums) > 1:
-        print ('Enter four numbers: (Enter -1 to quit)')
-        nums = [int(i) for i in input().split()]
-        if len(nums) == 4 :solve(nums, 24)
+    nums = []
+    while -1 not in nums or len(nums) != 1:
+        print ('Enter four numbers separated by space, : (Enter -1 to quit)')
+        try:
+            nums = [int(i) for i in input().strip().split()]
+        except ValueError:
+            pass
+        if len(nums) == 4 :
+            solve(nums, 24)
+            nums.clear()
