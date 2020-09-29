@@ -228,6 +228,6 @@ if __name__ == "__main__":
             nums = [int(i) for i in input().strip().split()]
         except ValueError:
             pass
-        if len(nums) == 4 :
+        if len(nums) == 4:
             solve(nums, 24)
             nums.clear()
