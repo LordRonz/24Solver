@@ -1,20 +1,22 @@
 from itertools import permutations
 
+
 def operate(a, b, op):
-    if op == '+':
+    if op == "+":
         return a + b
-    elif op == '-':
+    elif op == "-":
         return a - b
-    elif op == '*':
+    elif op == "*":
         return a * b
-    elif op == '/':
+    elif op == "/":
         if b == 0:
             return a / 0.0001
         else:
             return a / b
 
+
 def solve(nums, target):
-    op = ('+', '-', '*', '/')
+    op = ("+", "-", "*", "/")
     answer = []
     opAns = []
     i = 1
@@ -59,10 +61,10 @@ def solve(nums, target):
                         opAns = [a, b, c]
                         tempList = [answer, opAns]
                         allAns.extend([tempList])
-                    if c == '/' and b != '/':
+                    if c == "/" and b != "/":
                         j -= 1
                         res = temp2
-                    elif c == '/' and b == '/':
+                    elif c == "/" and b == "/":
                         j = 1
                         res = numPer[0]
                     else:
@@ -72,16 +74,16 @@ def solve(nums, target):
         for temp in allAns:
             answer = temp[0]
             opAns = temp[1]
-            ans = ''
+            ans = ""
             j = 0
             for i in range(4):
                 ans += str(answer[i])
                 if j < 3:
-                    ans += ' '
+                    ans += " "
                     ans += opAns[j]
-                    ans += ' '
+                    ans += " "
                 j += 1
-            print (ans)
+            print(ans)
 
     allAns.clear()
 
@@ -116,19 +118,19 @@ def solve(nums, target):
             answer = temp[0]
             opAns = temp[1]
             j = 0
-            ans = '('
+            ans = "("
             for i in range(4):
                 if i == 2:
-                    ans += '('
+                    ans += "("
                 ans += str(answer[i])
                 if i == 1 or i == 3:
-                    ans += ')'
+                    ans += ")"
                 if j < 3:
-                    ans += ' '
+                    ans += " "
                     ans += opAns[j]
-                    ans += ' '
+                    ans += " "
                 j += 1
-            print (ans)
+            print(ans)
 
     allAns.clear()
 
@@ -162,19 +164,19 @@ def solve(nums, target):
             answer = temp[0]
             opAns = temp[1]
             j = 0
-            ans = ''
+            ans = ""
             for i in range(4):
                 if i == 1 or i == 2:
-                    ans += '('
+                    ans += "("
                 ans += str(answer[i])
                 if i == 3:
-                    ans += ')'
+                    ans += ")"
                 if j < 3:
-                    ans += ' '
+                    ans += " "
                     ans += opAns[j]
-                    ans += ' '
+                    ans += " "
                 j += 1
-            ans += ')'
+            ans += ")"
             print(ans)
 
     allAns.clear()
@@ -202,28 +204,29 @@ def solve(nums, target):
             answer = temp[0]
             opAns = temp[1]
             j = 0
-            ans = ''
+            ans = ""
             for i in range(4):
                 if i == 1:
-                    ans += '(('
+                    ans += "(("
                 ans += str(answer[i])
                 if i == 2 or i == 3:
-                    ans += ')'
+                    ans += ")"
                 if j < 3:
-                    ans += ' '
+                    ans += " "
                     ans += opAns[j]
-                    ans += ' '
+                    ans += " "
                 j += 1
             print(ans)
 
     if not found:
-        print ('Solution not found !')
+        print("Solution not found !")
+
 
 if __name__ == "__main__":
-    print ('<----- Math 24Solver ----->')
+    print("<----- Math 24Solver ----->")
     nums = []
     while -1 not in nums or len(nums) != 1:
-        print ('Enter four numbers separated by space, : (Enter -1 to quit)')
+        print("Enter four numbers separated by space, : (Enter -1 to quit)")
         try:
             nums = [int(i) for i in input().strip().split()]
         except ValueError:
