@@ -19,7 +19,6 @@ def solve(nums, target):
     op = ("+", "-", "*", "/")
     answer = []
     opAns = []
-    i = 1
     j = 1
     res = nums[0]
     temp1 = 0
@@ -75,14 +74,10 @@ def solve(nums, target):
             answer = temp[0]
             opAns = temp[1]
             ans = ""
-            j = 0
             for i in range(4):
                 ans += str(answer[i])
-                if j < 3:
-                    ans += " "
-                    ans += opAns[j]
-                    ans += " "
-                j += 1
+                if i < 3:
+                    ans += " {0} ".format(opAns[i])
             print(ans)
 
     allAns.clear()
@@ -117,7 +112,6 @@ def solve(nums, target):
         for temp in allAns:
             answer = temp[0]
             opAns = temp[1]
-            j = 0
             ans = "("
             for i in range(4):
                 if i == 2:
@@ -125,16 +119,12 @@ def solve(nums, target):
                 ans += str(answer[i])
                 if i == 1 or i == 3:
                     ans += ")"
-                if j < 3:
-                    ans += " "
-                    ans += opAns[j]
-                    ans += " "
-                j += 1
+                if i < 3:
+                    ans += " {0} ".format(opAns[i])
             print(ans)
 
     allAns.clear()
 
-    j = 1
     for numPer in p:
         temp1 = 0
         temp2 = 0
@@ -163,7 +153,6 @@ def solve(nums, target):
         for temp in allAns:
             answer = temp[0]
             opAns = temp[1]
-            j = 0
             ans = ""
             for i in range(4):
                 if i == 1 or i == 2:
@@ -171,17 +160,12 @@ def solve(nums, target):
                 ans += str(answer[i])
                 if i == 3:
                     ans += ")"
-                if j < 3:
-                    ans += " "
-                    ans += opAns[j]
-                    ans += " "
-                j += 1
-            ans += ")"
-            print(ans)
+                if i < 3:
+                    ans += " {0} ".format(opAns[i])
+            print("{0})".format(ans))
 
     allAns.clear()
 
-    j = 1
     for numPer in p:
         temp1 = 0
         temp2 = 0
@@ -203,7 +187,6 @@ def solve(nums, target):
         for temp in allAns:
             answer = temp[0]
             opAns = temp[1]
-            j = 0
             ans = ""
             for i in range(4):
                 if i == 1:
@@ -211,21 +194,17 @@ def solve(nums, target):
                 ans += str(answer[i])
                 if i == 2 or i == 3:
                     ans += ")"
-                if j < 3:
-                    ans += " "
-                    ans += opAns[j]
-                    ans += " "
-                j += 1
+                if i < 3:
+                    ans += " {0} ".format(opAns[i])
             print(ans)
 
     if not found:
         print("Solution not found !")
 
-
-if __name__ == "__main__":
+def main():
     print("<----- Math 24Solver ----->")
     nums = []
-    while -1 not in nums or len(nums) != 1:
+    while -1 not in set(nums) or len(nums) != 1:
         print("Enter four numbers separated by space, : (Enter -1 to quit)")
         try:
             nums = [int(i) for i in input().strip().split()]
@@ -234,3 +213,7 @@ if __name__ == "__main__":
         if len(nums) == 4:
             solve(nums, 24)
             nums.clear()
+
+
+if __name__ == "__main__":
+    main()
