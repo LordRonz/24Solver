@@ -1,4 +1,5 @@
 from itertools import permutations
+import time
 
 
 def operate(a, b, op):
@@ -28,7 +29,7 @@ def solve(nums, target):
     planC = False
     planD = False
     allAns = []
-    p = list(set(permutations(nums)))
+    p = [*{*permutations(nums)}]
 
     for numPer in p:
         res = numPer[0]
@@ -56,7 +57,7 @@ def solve(nums, target):
                         print (b)
                         print (c) """
                         found = True
-                        answer = list(numPer)
+                        answer = [*numPer]
                         opAns = [a, b, c]
                         tempList = [answer, opAns]
                         allAns.extend([tempList])
@@ -70,9 +71,7 @@ def solve(nums, target):
                         res = temp1
 
     if found:
-        for temp in allAns:
-            answer = temp[0]
-            opAns = temp[1]
+        for answer, opAns in allAns:
             ans = ""
             for i in range(4):
                 ans += str(answer[i])
@@ -103,15 +102,13 @@ def solve(nums, target):
                         print (b)
                         print (numPer[3])
                         print (temp2) """
-                        answer = list(numPer)
+                        answer = [*numPer]
                         opAns = [a, c, b]
                         tempList = [answer, opAns]
                         allAns.extend([tempList])
 
     if found and planB:
-        for temp in allAns:
-            answer = temp[0]
-            opAns = temp[1]
+        for answer, opAns in allAns:
             ans = "("
             for i in range(4):
                 if i == 2:
@@ -150,9 +147,7 @@ def solve(nums, target):
                         allAns.extend([tempList])
 
     if found and planC:
-        for temp in allAns:
-            answer = temp[0]
-            opAns = temp[1]
+        for answer, opAns in allAns:
             ans = ""
             for i in range(4):
                 if i == 1 or i == 2:
@@ -163,7 +158,6 @@ def solve(nums, target):
                 if i < 3:
                     ans += " {0} ".format(opAns[i])
             print("{0})".format(ans))
-
     allAns.clear()
 
     for numPer in p:
@@ -184,9 +178,7 @@ def solve(nums, target):
                         allAns.extend([tempList])
 
     if found and planD:
-        for temp in allAns:
-            answer = temp[0]
-            opAns = temp[1]
+        for answer, opAns in allAns:
             ans = ""
             for i in range(4):
                 if i == 1:
@@ -201,10 +193,11 @@ def solve(nums, target):
     if not found:
         print("Solution not found !")
 
+
 def main():
     print("<----- Math 24Solver ----->")
     nums = []
-    while -1 not in set(nums) or len(nums) != 1:
+    while -1 not in {*nums} or len(nums) != 1:
         print("Enter four numbers separated by space, : (Enter -1 to quit)")
         try:
             nums = [int(i) for i in input().strip().split()]
