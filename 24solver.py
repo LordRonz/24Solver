@@ -133,7 +133,7 @@ def solve(nums, target):
 def main():
     print("<----- Math 24Solver ----->")
     nums = []
-    while -1 not in {*nums} or len(nums) != 1:
+    while -1 not in nums or len(nums) != 1:
         print("Enter four numbers separated by space, : (Enter -1 to quit)")
         try:
             nums = [int(i) for i in input().strip().split()]
