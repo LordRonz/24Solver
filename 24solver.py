@@ -22,8 +22,8 @@ def solve(nums, target):
     temp1 = temp2 = 0
     found = planB = planC = planD = False
     allAns = []
-    p = [*{*permutations(nums)}]
-
+    p = tuple(tuple(permutations(nums)))
+    ansappend = allAns.append
     for numPer in p:
         res = numPer[0]
         for a in op:
@@ -43,7 +43,7 @@ def solve(nums, target):
                         answer = [*numPer]
                         opAns = [a, b, c]
                         tempList = [answer, opAns]
-                        allAns.extend([tempList])
+                        ansappend(tempList)
                     if c == "/" and b != "/":
                         j -= 1
                         res = temp2
@@ -74,7 +74,7 @@ def solve(nums, target):
                         answer = [*numPer]
                         opAns = [a, c, b]
                         tempList = [answer, opAns]
-                        allAns.extend([tempList])
+                        ansappend(tempList)
 
     if found and planB:
         for answer, opAns in allAns:
@@ -97,7 +97,7 @@ def solve(nums, target):
                         answer = [numPer[3], numPer[2], numPer[0], numPer[1]]
                         opAns = [c, b, a]
                         tempList = [answer, opAns]
-                        allAns.extend([tempList])
+                        ansappend(tempList)
 
     if found and planC:
         for answer, opAns in allAns:
@@ -120,7 +120,7 @@ def solve(nums, target):
                         answer = [numPer[3], numPer[0], numPer[1], numPer[2]]
                         opAns = [c, a, b]
                         tempList = [answer, opAns]
-                        allAns.extend([tempList])
+                        ansappend(tempList)
 
     if found and planD:
         for answer, opAns in allAns:
