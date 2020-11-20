@@ -22,7 +22,7 @@ def solve(nums, target):
     temp1 = temp2 = 0
     found = planB = planC = planD = False
     allAns = []
-    p = tuple(tuple(permutations(nums)))
+    p = (*{*permutations(nums)},)
     ansappend = allAns.append
     for numPer in p:
         res = numPer[0]
@@ -54,8 +54,7 @@ def solve(nums, target):
                         res = temp1
 
     if found:
-        for answer, opAns in allAns:
-            print("{0} {4} {1} {5} {2} {6} {3}".format(*answer, *opAns))
+        print("\n".join("{0} {4} {1} {5} {2} {6} {3}".format(*answer, *opAns) for answer, opAns in allAns))
 
     allAns *= 0
 
@@ -77,8 +76,7 @@ def solve(nums, target):
                         ansappend(tempList)
 
     if found and planB:
-        for answer, opAns in allAns:
-            print("({0} {4} {1}) {5} ({2} {6} {3})".format(*answer, *opAns))
+        print("\n".join("({0} {4} {1}) {5} ({2} {6} {3})".format(*answer, *opAns) for answer, opAns in allAns))
 
     allAns *= 0
 
@@ -100,8 +98,7 @@ def solve(nums, target):
                         ansappend(tempList)
 
     if found and planC:
-        for answer, opAns in allAns:
-            print("{0} {4} ({1} {5} ({2} {6} {3}))".format(*answer, *opAns))
+        print("\n".join("{0} {4} ({1} {5} ({2} {6} {3}))".format(*answer, *opAns) for answer, opAns in allAns))
 
     allAns *= 0
 
@@ -123,8 +120,7 @@ def solve(nums, target):
                         ansappend(tempList)
 
     if found and planD:
-        for answer, opAns in allAns:
-            print("{0} {4} (({1} {5} {2}) {6} {3})".format(*answer, *opAns))
+        print("\n".join("{0} {4} (({1} {5} {2}) {6} {3})".format(*answer, *opAns) for answer, opAns in allAns))
 
     if not found:
         print("Solution not found !")
@@ -132,11 +128,11 @@ def solve(nums, target):
 
 def main():
     print("<----- Math 24Solver ----->")
-    nums = []
+    nums = ()
     while -1 not in nums or len(nums) != 1:
         print("Enter four numbers separated by space, : (Enter -1 to quit)")
         try:
-            nums = [int(i) for i in input().strip().split()]
+            nums = (*(int(i) for i in input().strip().split()),)
         except ValueError:
             pass
         if len(nums) == 4:
