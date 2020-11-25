@@ -1,6 +1,6 @@
 from itertools import permutations
 
-def operate(a, b, op):
+def operate(a, b, op) -> float:
     if op == "+":
         return a + b
     elif op == "-":
@@ -13,7 +13,7 @@ def operate(a, b, op):
         else:
             return a / b
 
-def solve(nums, target):
+def solve(nums: tuple, target: int = 24) -> None:
     op = ("+", "-", "*", "/")
     answer = []
     opAns = []
@@ -126,9 +126,9 @@ def solve(nums, target):
         print("Solution not found !")
 
 
-def main():
+def main() -> None:
     print("<----- Math 24Solver ----->")
-    nums = ()
+    nums: Tuple[int] = ()
     while -1 not in nums or len(nums) != 1:
         print("Enter four numbers separated by space, : (Enter -1 to quit)")
         try:
