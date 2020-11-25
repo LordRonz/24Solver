@@ -13,7 +13,7 @@ def operate(a, b, op) -> float:
         else:
             return a / b
 
-def solve(nums: tuple, target: int = 24) -> None:
+def solve(nums: tuple, target: int) -> None:
     op = ("+", "-", "*", "/")
     answer = []
     opAns = []
